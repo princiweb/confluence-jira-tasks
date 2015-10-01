@@ -114,17 +114,17 @@
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 		<script>
-		var existeEstimativa = AJS.$('.jira-tablesorter-header:contains("Original Estimate")').length > 0;
+		var existeEstimativa = $('.jira-tablesorter-header:contains("Original Estimate")').length > 0;
 
 							if(existeEstimativa){
-								var tabela = AJS.$('.jira-tablesorter-header:contains("Original Estimate")').parents('table');
+								var tabela = $('.jira-tablesorter-header:contains("Original Estimate")').parents('table');
 								var tabelaCompleta = [];
 								tabela.find('tbody tr.rowNormal, tbody tr.rowAlternate').each(function(){
 
 									var objeto = {
-										"tempoEstimadoMinutos": resumirDataEmMinutos(AJS.$(this).find("td")[0].textContent.trim()),
-										"dueDate": AJS.$(this).find("td")[1].textContent,
-										"projeto": (AJS.$(this).find("td").length > 2) ? AJS.$(this).find("td")[2].textContent : ''
+										"tempoEstimadoMinutos": resumirDataEmMinutos($(this).find("td")[0].textContent.trim()),
+										"dueDate": $(this).find("td")[1].textContent,
+										"projeto": ($(this).find("td").length > 2) ? $(this).find("td")[2].textContent : ''
 									}
 									tabelaCompleta.push(objeto);
 								});
@@ -191,8 +191,8 @@
 								var regexTempoEstimado = /(([0-9]+) weeks?)?(, )?(([0-9]+) days?)?(, )?(([0-9]{1,2}) hours?)?(, )?(([0-9]{1,2}) minutes?)?/i
 								var horasRegexADA =regexTempoEstimado.exec(data);
 
-								var minutosSemanas = Number(horasRegexADA[2]*60*24*7) || 0;
-								var minutosDias = Number(horasRegexADA[5]*60*24) || 0;
+								var minutosSemanas = Number(horasRegexADA[2]*60*8*7) || 0;
+								var minutosDias = Number(horasRegexADA[5]*60*8) || 0;
 								var minutosHoras = Number(horasRegexADA[8]*60) || 0;
 								var Minutos = Number(horasRegexADA[11]) || 0;
 
@@ -201,7 +201,7 @@
 								return resumo;
 							}
 
-		          AJS.$('.refresh-action').click(function() {
+		          $('.refresh-action').click(function() {
 		            location.reload();
 		          });
 		</script>
